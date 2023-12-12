@@ -37,7 +37,7 @@ exports.add = async (req, res) => {
 
 exports.update = async (req, res) => {
   try {
-    await tenantService.update(req.params.id, req.body);
+    await tenantService.update(req.params.id, req.body, req.file);
 
     return res.status(200)
       .send(requestHelper.getResponse(true, "Tenant updated successfully"));
