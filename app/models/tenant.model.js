@@ -16,6 +16,9 @@ module.exports = (sequelize, Sequelize) => {
     navigation_text: Sequelize.STRING(30),
     navigation_position: Sequelize.INTEGER,
     listing_type: Sequelize.ENUM("area_wine", "country_wine"),
+    created_at: Sequelize.DATEONLY,
+    updated_at: Sequelize.DATEONLY,
+  }, {
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
