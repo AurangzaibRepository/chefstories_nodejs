@@ -1,12 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const express = require("express");
-const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const app = express();
 require("dotenv").config();
 
 // Add middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Synchronize models
 const db = require("./app/models");
