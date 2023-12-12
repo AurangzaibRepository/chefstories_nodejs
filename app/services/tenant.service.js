@@ -11,8 +11,11 @@ exports.getAll = async () => {
   return data;
 };
 
-exports.add = async (parameters) => {
-  await db.tenants.create(parameters);
+exports.add = async (parameters, fileName) => {
+  const data = parameters;
+  data.logo = fileName;
+
+  await db.tenants.create(data);
 };
 
 exports.update = async (id, parameters) => {
