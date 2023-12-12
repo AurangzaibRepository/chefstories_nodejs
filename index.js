@@ -1,14 +1,16 @@
 const express = require("express");
 const cors = require("cors");
-const db = require("./app/models");
 
 const app = express();
+require("dotenv").config();
 
 // Add middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Synchronize models
+const db = require("./app/models");
+
 db.sequelize.sync({ alter: true });
 
 // Include routes
