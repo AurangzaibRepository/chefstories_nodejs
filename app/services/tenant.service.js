@@ -11,8 +11,12 @@ exports.getAll = async () => {
   return data;
 };
 
-exports.add = async (parameters, fileName) => {
-  const data = { ...parameters, ...{ logo: fileName } };
+exports.add = async (parameters, file) => {
+  let data = parameters;
+
+  if (file) {
+    data = { ...parameters, ...{ logo: file.originalname } };
+  }
 
   await db.tenants.create(data);
 };
