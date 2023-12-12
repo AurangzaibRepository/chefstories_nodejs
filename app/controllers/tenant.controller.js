@@ -25,7 +25,7 @@ exports.listing = (req, res) => {
 
 exports.add = async (req, res) => {
   try {
-    await tenantService.add(req.body, req.file.originalname);
+    await tenantService.add(req.body, req.file);
 
     return res.status(200)
       .send(requestHelper.getResponse(true, "Tenant added successfully"));
