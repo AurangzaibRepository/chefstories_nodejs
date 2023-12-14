@@ -3,7 +3,7 @@ const requestHelper = require("../utils/request.helper");
 
 exports.all = async (req, res) => {
   try {
-    const data = await userService.getAll();
+    const data = await userService.getAll(req.params.tenantId);
 
     return res.status(200)
       .send(requestHelper.getResponse(true, null, null, data));
