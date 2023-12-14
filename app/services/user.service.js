@@ -19,3 +19,7 @@ exports.getAll = async (tenantId) => {
 
   return data;
 };
+
+exports.add = async (parameters) => {
+  await db.users.create(parameters);
+};
