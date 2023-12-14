@@ -9,15 +9,14 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
     },
     email: {
-      type: Sequelize.STRING(40),
+      type: Sequelize.STRING(80),
       allowNull: false,
     },
     password: {
       type: Sequelize.STRING(100),
-      allowNull: false,
     },
     role: {
-      type: Sequelize.ENUM("super admin", "admin", "users"),
+      type: Sequelize.ENUM("super admin", "admin", "user"),
       allowNull: false,
     },
     api_token: {
