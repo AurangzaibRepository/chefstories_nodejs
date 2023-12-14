@@ -9,7 +9,9 @@ exports.getAll = async (tenantId) => {
 
   const data = await db.users.findAll({
     where: condition,
-    attributes: ["id", "first_name"],
+    attributes: ["id",
+      [db.sequelize.fn("Concat", db.sequelize.col("first_name"), " ", db.sequelize.col("last_name")), "name"],
+    ],
     order: [
       ["id", "DESC"],
     ],
