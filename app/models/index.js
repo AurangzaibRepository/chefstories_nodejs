@@ -17,5 +17,12 @@ const db = {
 };
 
 db.tenants = require("./tenant.model")(sequelize, Sequelize);
+db.users = require("./user.model")(sequelize, Sequelize);
+
+// Model relations
+db.tenants.hasMany(db.users, {
+  foreignKey: "tenant_id",
+});
+db.users.belongsTo(db.tenants);
 
 module.exports = db;
