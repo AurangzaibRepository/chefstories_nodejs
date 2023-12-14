@@ -16,6 +16,7 @@ db.sequelize.sync({ alter: true });
 
 // Include routes
 require("./app/routes/tenant.route")(app);
+require("./app/routes/user.route")(app);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
