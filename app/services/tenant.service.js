@@ -1,14 +1,28 @@
 const db = require("../models");
+const tenantHelper = require("../utils/tenant.helper");
+const formatHelper = require("../utils/format.helper");
 
 exports.getAll = async () => {
-  const data = await db.tenants.findAll({
+  const data = await db.tenants.scope("orderName").findAll({
     attributes: ["id", "name"],
-    order: [
-      ["name"],
-    ],
   });
 
   return data;
+};
+
+exports.getListing = async (parameters) => {
+  const pageSize = parseInt(process.env.PAGE_SIZE, 10);
+  const offset = (parameters.pageNumber * pageSize) - pageSize;
+
+  const condition = tenantHelper.prepareCondition(parameters.keyword);
+  const recordCount = await db.tenants.count({ where: condition });
+
+  const data = await db.tenants.scope("limit", "orderLatest").findAll({
+    where: condition,
+    offset,
+  });
+
+  return formatHelper.formatListing(parameters.pageNumber, recordCount, data);
 };
 
 exports.add = async (parameters, file) => {
