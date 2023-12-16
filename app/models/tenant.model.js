@@ -27,6 +27,21 @@ module.exports = (sequelize, Sequelize) => {
         exclude: ["created_at", "updated_at"],
       },
     },
+    scopes: {
+      limit: {
+        limit: parseInt(process.env.PAGE_SIZE, 10),
+      },
+      orderLatest: {
+        order: [
+          ["id", "DESC"],
+        ],
+      },
+      orderName: {
+        order: [
+          ["name"],
+        ],
+      },
+    },
   });
 
   return Tenant;
