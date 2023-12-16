@@ -19,7 +19,7 @@ exports.getListing = async (parameters) => {
 
   /* If applying scopes other than defaultScope, we need to specify defaultScope
      because it is removed */
-  const data = await db.tenants.scope("defaultScope", "limit", "orderLatest") 
+  const data = await db.tenants.scope("defaultScope", "limit", "orderLatest")
     .findAll({
       where: condition,
       offset,

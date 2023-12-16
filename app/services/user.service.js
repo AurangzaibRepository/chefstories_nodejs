@@ -25,10 +25,11 @@ exports.getListing = async (parameters) => {
   const condition = userHelper.prepareCondition(parameters.keyword);
   const recordCount = await db.users.count({ where: condition });
 
-  const data = await db.users.scope("orderLatest", "limit").findAll({
-    where: condition,
-    offset,
-  });
+  const data = await db.users.scope("defaultScope", "orderLatest", "limit")
+    .findAll({
+      where: condition,
+      offset,
+    });
 
   return formatHelper.formatListing(parameters.pageNumber, recordCount, data);
 };
