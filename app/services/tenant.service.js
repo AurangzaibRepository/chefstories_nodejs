@@ -17,7 +17,9 @@ exports.getListing = async (parameters) => {
   const condition = tenantHelper.prepareCondition(parameters.keyword);
   const recordCount = await db.tenants.count({ where: condition });
 
-  const data = await db.tenants.scope("defaultScope", "limit", "orderLatest")
+  /* If applying scopes other than defaultScope, we need to specify defaultScope
+     because it is removed */
+  const data = await db.tenants.scope("defaultScope", "limit", "orderLatest") 
     .findAll({
       where: condition,
       offset,
