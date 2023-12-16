@@ -32,6 +32,26 @@ module.exports = (sequelize, Sequelize) => {
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
+    defaultScope: {
+      attributes: {
+        exclude: ["created_at", "updated_at"],
+      },
+    },
+    scopes: {
+      limit: {
+        limit: parseInt(process.env.PAGE_SIZE, 10),
+      },
+      orderLatest: {
+        order: [
+          ["id", "DESC"],
+        ],
+      },
+      orderName: {
+        order: [
+          ["name"],
+        ],
+      },
+    },
   });
 
   return User;
