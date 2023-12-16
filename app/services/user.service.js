@@ -1,4 +1,6 @@
 const db = require("../models");
+const userHelper = require("../utils/user.helper");
+const formatHelper = require("../utils/format.helper");
 
 exports.getAll = async (tenantId) => {
   const condition = {};
@@ -15,6 +17,20 @@ exports.getAll = async (tenantId) => {
   });
 
   return data;
+};
+
+exports.getListing = async (parameters) => {
+  const pageSize = parseInt(process.env.PAGE_SIZE, 10);
+  const offset = (parameters.pageNumber * pageSize) - pageSize;
+  const condition = userHelper.prepareCondition(parameters.keyword);
+  const recordCount = await db.users.count({ where: condition });
+
+  const data = await db.users.scope("orderLatest", "limit").findAll({
+    where: condition,
+    offset,
+  });
+
+  return formatHelper.formatListing(parameters.pageNumber, recordCount, data);
 };
 
 exports.add = async (parameters) => {
