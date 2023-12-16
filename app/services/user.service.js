@@ -34,6 +34,8 @@ exports.getListing = async (parameters) => {
   return formatHelper.formatListing(parameters.pageNumber, recordCount, data);
 };
 
+exports.get = async (id) => db.users.findByPk(id);
+
 exports.add = async (parameters) => {
   await db.users.create(parameters);
 };
