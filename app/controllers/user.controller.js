@@ -15,7 +15,7 @@ exports.all = async (req, res) => {
 
 exports.listing = async (req, res) => {
   try {
-    const data = await userService.getListing();
+    const data = await userService.getListing(req.params);
 
     return res.status(200)
       .send(requestHelper.getResponse(true, null, null, data));
