@@ -7,13 +7,10 @@ exports.getAll = async (tenantId) => {
     condition.tenant_id = tenantId;
   }
 
-  const data = await db.users.findAll({
+  const data = await db.users.scope("orderName").findAll({
     where: condition,
     attributes: ["id",
       [db.sequelize.fn("Concat", db.sequelize.col("first_name"), " ", db.sequelize.col("last_name")), "name"],
-    ],
-    order: [
-      ["id", "DESC"],
     ],
   });
 
