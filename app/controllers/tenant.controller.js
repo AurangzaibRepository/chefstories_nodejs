@@ -13,10 +13,12 @@ exports.all = async (req, res) => {
   }
 };
 
-exports.listing = (req, res) => {
+exports.listing = async (req, res) => {
   try {
+    const data = await tenantService.getListing(req.params);
+
     return res.status(200)
-      .send(requestHelper.getResponse(true, "Listing goes here"));
+      .send(requestHelper.getResponse(true, null, null, data));
   } catch (exception) {
     return res.status(500)
       .send(requestHelper.getResponse(false, null, exception.message));
