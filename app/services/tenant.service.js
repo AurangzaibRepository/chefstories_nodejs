@@ -17,13 +17,16 @@ exports.getListing = async (parameters) => {
   const condition = tenantHelper.prepareCondition(parameters.keyword);
   const recordCount = await db.tenants.count({ where: condition });
 
-  const data = await db.tenants.scope("limit", "orderLatest").findAll({
-    where: condition,
-    offset,
-  });
+  const data = await db.tenants.scope("defaultScope", "limit", "orderLatest")
+    .findAll({
+      where: condition,
+      offset,
+    });
 
   return formatHelper.formatListing(parameters.pageNumber, recordCount, data);
 };
+
+exports.get = async (id) => db.tenants.findByPk(id);
 
 exports.add = async (parameters, file) => {
   const data = parameters;
