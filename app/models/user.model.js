@@ -1,3 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
+const bcrypt = require("bcrypt");
+
 module.exports = (sequelize, Sequelize) => {
   const User = sequelize.define("user", {
     first_name: {
@@ -52,6 +55,11 @@ module.exports = (sequelize, Sequelize) => {
         ],
       },
     },
+  });
+
+  // Hooks
+  User.beforeCreate(async (user) => {
+    user.password = await bcrypt.hash(user.password, 10);
   });
 
   return User;
