@@ -29,6 +29,14 @@ exports.add = async (req, res) => {
   }
 };
 
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
+  try {
+    await userService.update(req.params.id, req.body);
 
+    return res.status(200)
+      .send(requestHelper.getResponse(true, "User updated successfully"));
+  } catch (exception) {
+    return res.status(500)
+      .send(requestHelper.getResponse(false, null, exception.message));
+  }
 };
