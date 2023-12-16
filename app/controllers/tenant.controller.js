@@ -25,6 +25,18 @@ exports.listing = async (req, res) => {
   }
 };
 
+exports.get = async (req, res) => {
+  try {
+    const data = await tenantService.get(req.params.id);
+
+    return res.status(200)
+      .send(requestHelper.getResponse(true, null, null, data));
+  } catch (exception) {
+    return res.status(500)
+      .send(requestHelper.getResponse(false, null, exception.message));
+  }
+};
+
 exports.add = async (req, res) => {
   try {
     await tenantService.add(req.body, req.file);
