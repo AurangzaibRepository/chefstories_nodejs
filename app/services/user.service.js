@@ -23,3 +23,11 @@ exports.getAll = async (tenantId) => {
 exports.add = async (parameters) => {
   await db.users.create(parameters);
 };
+
+exports.update = async (id, parameters) => {
+  await db.users.update(parameters, {
+    where: {
+      id,
+    },
+  });
+};
