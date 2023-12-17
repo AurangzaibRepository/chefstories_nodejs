@@ -24,5 +24,12 @@ module.exports = (sequelize, Sequelize) => {
     updatedAt: "updated_at",
   });
 
+  // Scopes
+  Currency.addScope("orderName", {
+    order: [
+      ["name"],
+    ],
+  });
+
   return Currency;
 };
