@@ -36,3 +36,15 @@ exports.add = async (req, res) => {
       .send(requestHelper.getResponse(false, null, exception.message));
   }
 };
+
+exports.update = async (req, res) => {
+  try {
+    await currencyService.update(req.params.id, req.body);
+
+    return res.status(200)
+      .send(requestHelper.getResponse(true, "Currency updated successfully"));
+  } catch (exception) {
+    return res.status(500)
+      .send(requestHelper.getResponse(false, null, exception.message));
+  }
+};
