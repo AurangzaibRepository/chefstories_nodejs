@@ -24,3 +24,15 @@ exports.get = async (req, res) => {
       .send(requestHelper.getResponse(false, null, exception.message));
   }
 };
+
+exports.add = async (req, res) => {
+  try {
+    await currencyService.add(req.body);
+
+    return res.status(200)
+      .send(requestHelper.getResponse(true, "Currency added successfully"));
+  } catch (exception) {
+    return res.status(500)
+      .send(requestHelper.getResponse(false, null, exception.message));
+  }
+};
