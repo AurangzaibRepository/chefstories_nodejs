@@ -10,3 +10,5 @@ exports.getAll = async (tenantId) => {
 
   return data;
 };
+
+exports.get = async (id) => db.currencies.findByPk(id);
