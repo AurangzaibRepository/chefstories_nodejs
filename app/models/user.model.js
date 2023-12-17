@@ -17,6 +17,11 @@ module.exports = (sequelize, Sequelize) => {
     },
     password: {
       type: Sequelize.STRING(100),
+      set(value) {
+        // We need to use sync operation since getters/setters do not support async
+        const salt = bcrypt.genSaltSync(10);
+        this.setDataValue("password", bcrypt.hashSync(value, salt));
+      },
     },
     role: {
       type: Sequelize.ENUM("super admin", "admin", "user"),
@@ -57,14 +62,14 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  // Hooks
+  /* Hooks
   User.beforeCreate(async (user) => {
     user.password = await bcrypt.hash(user.password, 10);
   });
 
   User.beforeUpdate(async (user) => {
     user.password = await bcrypt.hash(user.password, 10);
-  });
+  }); */
 
   return User;
 };
