@@ -41,15 +41,15 @@ exports.add = async (parameters) => {
 };
 
 exports.update = async (id, parameters) => {
-  /* await db.users.update(parameters, {
+  await db.users.update(parameters, {
     where: {
       id,
     },
-  }); */
+  });
 
-  // Use this approach in order to trigger beforeUpdate hook
+  /* Use this approach in order to trigger beforeUpdate hook
   db.users.findByPk(id)
     .then((record) => {
       record.update(parameters);
-    });
+    }); */
 };
