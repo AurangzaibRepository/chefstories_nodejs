@@ -1,3 +1,5 @@
+const formatHelper = require("../utils/format.helper");
+
 module.exports = (sequelize, Sequelize) => {
   const Tenant = sequelize.define("tenant", {
     name: {
@@ -8,7 +10,13 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING(50),
       allowNull: false,
     },
-    logo: Sequelize.STRING(50),
+    logo: { 
+      type: Sequelize.STRING(50),
+      get() {
+        const rawValue = this.getDataValue("logo");
+        return (rawValue ? formatHelper.formatImagePath(`tenants/${rawValue}`) : rawValue);
+      },
+    },
     status: {
       type: Sequelize.ENUM("Active", "Inactive"),
       defaultValue: "Active",
