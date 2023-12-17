@@ -14,3 +14,11 @@ exports.getAll = async (tenantId) => {
 exports.get = async (id) => db.currencies.findByPk(id);
 
 exports.add = async (parameters) => db.currencies.create(parameters);
+
+exports.update = async (id, parameters) => {
+  await db.currencies.update(parameters, {
+    where: {
+      id,
+    },
+  });
+};
