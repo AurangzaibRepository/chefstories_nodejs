@@ -1,15 +1,15 @@
 module.exports = (sequelize, Sequelize) => {
   const Currency = sequelize.define("currency", {
     name: {
-      type: Sequelize.STRING(20),
+      type: Sequelize.STRING(30),
       allowNull: false,
     },
     short_name: {
-      type: Sequelize.STRING(10),
+      type: Sequelize.STRING(30),
       allowNull: false,
     },
     symbol: {
-      type: Sequelize.STRNG(5),
+      type: Sequelize.STRING(5),
       allowNull: false,
     },
     factor: Sequelize.INTEGER,
