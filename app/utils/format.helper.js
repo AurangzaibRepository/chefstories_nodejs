@@ -9,3 +9,5 @@ exports.formatListing = (pageNumber, recordCount, data) => {
     data,
   };
 };
+
+exports.formatImagePath = (filePath) => `${process.env.BASEURL}${filePath}`;
