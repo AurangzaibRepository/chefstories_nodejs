@@ -9,6 +9,9 @@ require("dotenv").config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Serve static files
+app.use("/uploads", express.static("uploads"));
+
 // Synchronize models
 const db = require("./app/models");
 
