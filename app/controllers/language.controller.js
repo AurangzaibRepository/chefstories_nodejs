@@ -21,3 +21,14 @@ exports.listing = (req, res, next) => {
     return false;
   }
 };
+
+exports.get = (req, res, next) => {
+  try {
+    return res.status(200)
+      .send(requestHelper.getResponse(true));
+  } catch (exception) {
+    next(exception.message);
+
+    return false;
+  }
+};
