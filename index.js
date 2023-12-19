@@ -22,6 +22,7 @@ db.sequelize.sync({ alter: true });
 require("./app/routes/tenant.route")(app);
 require("./app/routes/user.route")(app);
 require("./app/routes/currency.route")(app);
+require("./app/routes/language.route")(app);
 
 // Error handler middleware
 app.use(errorHandler);
