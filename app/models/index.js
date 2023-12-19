@@ -19,6 +19,7 @@ const db = {
 db.tenants = require("./tenant.model")(sequelize, Sequelize);
 db.users = require("./user.model")(sequelize, Sequelize);
 db.currencies = require("./currency.model")(sequelize, Sequelize);
+db.languages = require("./language.model")(sequelize, Sequelize);
 
 // Model relations
 db.tenants.hasMany(db.users, {
@@ -32,6 +33,13 @@ db.tenants.hasMany(db.currencies, {
   foreignKey: "tenant_id",
 });
 db.currencies.belongsTo(db.tenants, {
+  foreignKey: "tenant_id",
+});
+
+db.tenants.hasMany(db.languages, {
+  foreignKey: "tenant_id",
+});
+db.languages.belongsTo(db.tenants, {
   foreignKey: "tenant_id",
 });
 
