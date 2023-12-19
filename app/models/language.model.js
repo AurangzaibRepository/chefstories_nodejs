@@ -43,5 +43,11 @@ module.exports = (sequelize, Sequelize) => {
     ],
   });
 
+  Language.addScope("orderName", {
+    order: [
+      ["name"],
+    ],
+  });
+
   return Language;
 };
