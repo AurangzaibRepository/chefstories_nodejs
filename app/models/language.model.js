@@ -32,5 +32,16 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
+  // Add scopes
+  Language.addScope("limit", {
+    limit: parseInt(process.env.PAGE_SIZE, 10),
+  });
+
+  Language.addScope("orderLatest", {
+    order: [
+      ["id", "DESC"],
+    ],
+  });
+
   return Language;
 };
