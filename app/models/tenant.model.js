@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING(50),
       allowNull: false,
     },
-    logo: { 
+    logo: {
       type: Sequelize.STRING(50),
       get() {
         const rawValue = this.getDataValue("logo");
