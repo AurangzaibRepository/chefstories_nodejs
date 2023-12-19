@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const express = require("express");
 const bodyParser = require("body-parser");
+const errorHandler = require("./app/middlewares/errorHandler.middleware");
 
 const app = express();
 require("dotenv").config();
@@ -21,6 +22,9 @@ db.sequelize.sync({ alter: true });
 require("./app/routes/tenant.route")(app);
 require("./app/routes/user.route")(app);
 require("./app/routes/currency.route")(app);
+
+// Error handler middleware
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
