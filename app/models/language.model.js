@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Language = sequelize.define("langauge", {
+  const Language = sequelize.define("language", {
     name: {
       type: Sequelize.STRING(100),
       allowNull: false,
@@ -13,8 +13,8 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
     },
     is_default: {
-      type: Sequelize.ENUM(1, 0),
-      defaultValue: 0,
+      type: Sequelize.ENUM("1", "0"),
+      defaultValue: "0",
     },
     tenant_id: {
       type: Sequelize.INTEGER,
