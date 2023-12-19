@@ -36,5 +36,15 @@ module.exports = (sequelize, Sequelize) => {
     ],
   });
 
+  Currency.addScope("limit", {
+    limit: parseInt(process.env.PAGE_SIZE, 10),
+  });
+
+  Currency.addScope("orderLatest", {
+    order: [
+      ["id", "DESC"],
+    ],
+  });
+
   return Currency;
 };
