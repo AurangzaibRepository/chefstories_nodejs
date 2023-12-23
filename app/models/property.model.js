@@ -28,5 +28,22 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
+  // Scopes
+  Property.addScope("limit", {
+    limit: parseInt(process.env.PAGE_SIZE, 10),
+  });
+
+  Property.addScope("orderName", {
+    order: [
+      ["name"],
+    ],
+  });
+
+  Property.addScope("orderLatest", {
+    order: [
+      ["id", "DESC"],
+    ],
+  });
+
   return Property;
 };
