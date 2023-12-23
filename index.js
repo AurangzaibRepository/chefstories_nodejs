@@ -1,12 +1,18 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const errorHandler = require("./app/middlewares/errorHandler.middleware");
 
 const app = express();
 require("dotenv").config();
 
+const corsOptions = {
+  origin: "http://localhost:3000",
+};
+
 // Add middlewares
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
