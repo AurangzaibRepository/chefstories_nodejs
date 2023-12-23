@@ -20,6 +20,7 @@ db.tenants = require("./tenant.model")(sequelize, Sequelize);
 db.users = require("./user.model")(sequelize, Sequelize);
 db.currencies = require("./currency.model")(sequelize, Sequelize);
 db.languages = require("./language.model")(sequelize, Sequelize);
+db.properties = require("./property.model")(sequelize, Sequelize);
 
 // Model relations
 db.tenants.hasMany(db.users, {
@@ -40,6 +41,13 @@ db.tenants.hasMany(db.languages, {
   foreignKey: "tenant_id",
 });
 db.languages.belongsTo(db.tenants, {
+  foreignKey: "tenant_id",
+});
+
+db.tenants.hasMany(db.proeprties, {
+  foreignKey: "tenant_id",
+});
+db.properties.belongsTo(db.tenants, {
   foreignKey: "tenant_id",
 });
 
