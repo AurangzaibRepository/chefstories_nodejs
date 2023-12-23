@@ -10,3 +10,9 @@ exports.getAll = async (tenantId) => {
 
   return data;
 };
+
+exports.get = async (id) => {
+  const data = await db.languages.findByPk(id);
+
+  return data;
+};
