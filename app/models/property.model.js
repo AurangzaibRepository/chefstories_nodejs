@@ -10,7 +10,6 @@ module.exports = (sequelize, Sequelize) => {
     },
     description: {
       type: Sequelize.STRING(100),
-      allowNull: false,
     },
     tenant_id: {
       type: Sequelize.INTEGER,

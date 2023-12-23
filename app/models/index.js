@@ -45,7 +45,7 @@ db.languages.belongsTo(db.tenants, {
   foreignKey: "tenant_id",
 });
 
-db.tenants.hasMany(db.proeprties, {
+db.tenants.hasMany(db.properties, {
   foreignKey: "tenant_id",
 });
 db.properties.belongsTo(db.tenants, {
