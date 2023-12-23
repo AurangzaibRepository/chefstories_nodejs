@@ -20,3 +20,11 @@ exports.get = async (id) => {
 exports.add = async (parameters) => {
   await db.languages.create(parameters);
 };
+
+exports.update = async (id, parameters) => {
+  await db.languages.update(parameters, {
+    where: {
+      id,
+    },
+  });
+};
