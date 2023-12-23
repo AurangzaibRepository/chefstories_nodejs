@@ -16,3 +16,7 @@ exports.get = async (id) => {
 
   return data;
 };
+
+exports.add = async (parameters) => {
+  await db.languages.create(parameters);
+};
