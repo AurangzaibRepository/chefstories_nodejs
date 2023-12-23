@@ -51,10 +51,12 @@ exports.add = async (req, res, next) => {
   }
 };
 
-exports.update = (req, res, next) => {
+exports.update = async (req, res, next) => {
   try {
+    await languageService.update(req.params.id, req.body);
+
     return res.status(200)
-      .send(Request.getResponse(true));
+      .send(Request.getResponse(true, "Language updated successfully"));
   } catch (exception) {
     next(exception.message);
 
