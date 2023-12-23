@@ -25,10 +25,12 @@ exports.listing = (req, res, next) => {
   }
 };
 
-exports.get = (req, res, next) => {
+exports.get = async (req, res, next) => {
   try {
+    const data = await languageService.get(req.params.id);
+
     return res.status(200)
-      .send(requestHelper.getResponse(true));
+      .send(requestHelper.getResponse(true, null, null, data));
   } catch (exception) {
     next(exception.message);
 
