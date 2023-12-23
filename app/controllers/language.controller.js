@@ -56,7 +56,7 @@ exports.update = async (req, res, next) => {
     await languageService.update(req.params.id, req.body);
 
     return res.status(200)
-      .send(Request.getResponse(true, "Language updated successfully"));
+      .send(requestHelper.getResponse(true, "Language updated successfully"));
   } catch (exception) {
     next(exception.message);
 
