@@ -1,9 +1,12 @@
+const languageService = require("../services/language.service");
 const requestHelper = require("../utils/request.helper");
 
-exports.all = (req, res, next) => {
+exports.all = async (req, res, next) => {
   try {
-    return req.status(200)
-      .send(requestHelper.getResponse(true));
+    const data = await languageService.getAll(req.params.tenantId);
+
+    return res.status(200)
+      .send(requestHelper.getResponse(true, null, null, data));
   } catch (exception) {
     next(exception.message);
 
