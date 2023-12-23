@@ -14,10 +14,12 @@ exports.all = async (req, res, next) => {
   }
 };
 
-exports.listing = (req, res, next) => {
+exports.listing = async (req, res, next) => {
   try {
+    const data = await languageService.getListing(req.params);
+
     return res.status(200)
-      .send(requestHelper.getResponse(true));
+      .send(requestHelper.getResponse(true, null, null, data));
   } catch (exception) {
     next(exception.message);
 
