@@ -21,5 +21,16 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
+  // Add scopes
+  propertyValue.addScope("limit", {
+    limit: parseInt(process.env.PAGE_SIZE, 10),
+  });
+
+  propertyValue.addScope("orderName", {
+    order: [
+      ["name"],
+    ],
+  });
+
   return propertyValue;
 };
