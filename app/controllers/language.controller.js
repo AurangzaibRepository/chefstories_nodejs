@@ -38,10 +38,12 @@ exports.get = async (req, res, next) => {
   }
 };
 
-exports.add = (req, res, next) => {
+exports.add = async (req, res, next) => {
   try {
+    await languageService.add(req.body);
+
     return res.status(200)
-      .send(requestHelper.getResponse(true));
+      .send(requestHelper.getResponse(true, "Language added successfully"));
   } catch (exception) {
     next(exception.message);
 
